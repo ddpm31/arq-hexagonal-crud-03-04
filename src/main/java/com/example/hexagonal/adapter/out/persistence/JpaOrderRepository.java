@@ -29,16 +29,22 @@ public class JpaOrderRepository implements OrderRepository  {
 
     @Override
     public Optional<Order> findById(Long id) {
+
         return Optional.ofNullable(entityManager.find(Order.class, id));
+
     }
 
     @Override
     public List<Order> findAll() {
+
         return entityManager.createQuery("SELECT o FROM Order o", Order.class).getResultList();
+
     }
 
     @Override
     public void deleteById(Long id) {
+
         findById(id).ifPresent(entityManager::remove);
+
     }
 }
